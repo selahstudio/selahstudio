@@ -1,0 +1,3668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selah Practice — The Selah Check-Up</title>
+<meta name="description" content="An integrative health assessment tool for the whole person — body, mind, spirit, and systems. By Selah Practice.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+:root {
+  --ink: #16120d;
+  --parchment: #f6f1e8;
+  --cream: #faf7f1;
+  --warm: #c9b99a;
+  --amber: #b07d35;
+  --amber-light: #c99448;
+  --rust: #8a3e22;
+  --sage: #4e6349;
+  --blush: #c4856a;
+  --deep: #1e1409;
+  --mid: #3a2a18;
+  --muted: #8a7b68;
+  --border: #ddd3c0;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--parchment);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px 160px;
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(176,125,53,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(196,133,106,0.07) 0%, transparent 60%),
+    var(--deep);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(176,125,53,0.04) 59px, rgba(176,125,53,0.04) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(176,125,53,0.03) 59px, rgba(176,125,53,0.03) 60px);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--warm);
+  margin-bottom: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--amber);
+  opacity: 0.5;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 9vw, 88px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--blush);
+}
+
+.hero-title .line2 {
+  display: block;
+  font-size: clamp(28px, 5.5vw, 56px);
+  color: var(--warm);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 3vw, 22px);
+  color: var(--warm);
+  font-style: italic;
+  margin: 24px 0 44px;
+  max-width: 520px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-primary {
+  padding: 16px 36px;
+  background: var(--amber);
+  color: var(--deep);
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary:hover { background: var(--amber-light); }
+
+.btn-outline {
+  padding: 16px 36px;
+  background: none;
+  color: var(--warm);
+  border: 1px solid rgba(201,185,154,0.3);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+
+.btn-outline:hover {
+  border-color: var(--warm);
+  color: var(--parchment);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--amber), transparent);
+}
+
+/* ── WHAT IT IS ── */
+.section-what {
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 100px 24px;
+}
+
+.section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--deep);
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+
+.section-heading em { font-style: italic; color: var(--rust); }
+
+.section-.section-.section-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--mid);
+  max-width: 580px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 64px;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .two-col { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.col-text .section-heading { font-size: clamp(24px, 4vw, 38px); }
+
+/* ── DOMAINS ── */
+.section-domains {
+  background: var(--mid);
+  padding: 100px 24px;
+}
+
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 48px;
+}
+
+@media (max-width: 700px) {
+  .domains-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+  .domains-grid { grid-template-columns: 1fr; }
+}
+
+.domain-tile {
+  background: rgba(255,255,255,0.04);
+  padding: 28px 22px;
+  border: 1px solid rgba(201,185,154,0.1);
+  transition: background 0.2s;
+}
+
+.domain-tile:hover { background: rgba(176,125,53,0.1); }
+
+.domain-tile-icon {
+  font-size: 20px;
+  margin-bottom: 14px;
+  display: block;
+  opacity: 0.7;
+}
+
+.domain-tile-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+
+.domain-tile-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--warm);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ── HOW IT WORKS ── */
+.section-how {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 100px 24px;
+}
+
+.steps {
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+}
+
+.step {
+  display: flex;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-style: italic;
+  color: var(--amber);
+  opacity: 0.5;
+  flex-shrink: 0;
+  width: 44px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.step-content {}
+.step-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 6px;
+}
+
+.step-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+/* ── WHO IT'S FOR ── */
+.section-who {
+  background: var(--deep);
+  padding: 100px 24px;
+}
+
+.who-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 52px;
+}
+
+@media (max-width: 680px) { .who-cards { grid-template-columns: 1fr; } }
+
+.who-card {
+  border: 1px solid rgba(201,185,154,0.15);
+  padding: 28px 22px;
+  position: relative;
+}
+
+.who-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--amber);
+  opacity: 0.4;
+}
+
+.who-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--parchment);
+  margin-bottom: 12px;
+}
+
+.who-card-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--warm);
+  line-height: 1.6;
+}
+
+/* ── PRICING ── */
+.section-pricing {
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 100px 24px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 52px;
+}
+
+@media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+.pricing-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 36px 28px;
+  position: relative;
+}
+
+.pricing-card.featured {
+  background: var(--deep);
+  color: var(--parchment);
+  border-color: var(--deep);
+}
+
+.pricing-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.pricing-card.featured .pricing-tag { color: var(--blush); }
+
+.pricing-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--deep);
+  margin-bottom: 6px;
+}
+
+.pricing-card.featured .pricing-name { color: var(--parchment); }
+
+.pricing-price {
+  font-family: 'DM Mono', monospace;
+  font-size: 32px;
+  color: var(--amber);
+  margin: 16px 0 20px;
+}
+
+.pricing-price span {
+  font-size: 14px;
+  color: var(--muted);
+  vertical-align: super;
+}
+
+.pricing-list {
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.pricing-list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--mid);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.pricing-card.featured .pricing-list li { color: var(--warm); border-bottom-color: rgba(201,185,154,0.15); }
+
+.pricing-list li::before {
+  content: '—';
+  color: var(--amber);
+  flex-shrink: 0;
+}
+
+.pricing-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: none;
+  border: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.pricing-btn:hover { background: var(--deep); color: var(--parchment); border-color: var(--deep); }
+
+.pricing-card.featured .pricing-btn {
+  background: var(--amber);
+  color: var(--deep);
+  border-color: var(--amber);
+  font-weight: 500;
+}
+
+.pricing-card.featured .pricing-btn:hover { background: var(--amber-light); }
+
+.featured-badge {
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  background: var(--blush);
+  color: white;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+
+/* ── ABOUT ── */
+.section-about {
+  background: var(--mid);
+  padding: 100px 24px;
+}
+
+.about-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-ornament {
+  font-size: 28px;
+  opacity: 0.4;
+  margin-bottom: 24px;
+}
+
+.about-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 4vw, 32px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--parchment);
+  line-height: 1.4;
+  margin-bottom: 32px;
+}
+
+.about-quote em { color: var(--blush); font-style: normal; }
+
+.about-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--warm);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.about-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 28px;
+}
+
+.about-credentials {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+/* ── CTA FINAL ── */
+.section-cta {
+  background: var(--deep);
+  padding: 100px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-cta::before {
+  content: 'SELAH';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(120px, 25vw, 280px);
+  font-style: italic;
+  color: rgba(176,125,53,0.04);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -4px;
+}
+
+.cta-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 6vw, 60px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cta-heading em { font-style: italic; color: var(--blush); }
+
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--warm);
+  font-style: italic;
+  margin-bottom: 44px;
+  position: relative;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(201,185,154,0.1);
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--warm);
+  margin-bottom: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--warm); }
+
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(138,123,104,0.5);
+}
+
+/* ── DIVIDER ── */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto 48px;
+  max-width: 300px;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+.ornament-divider span {
+  font-size: 16px;
+  opacity: 0.4;
+}
+
+/* mobile tweaks */
+@media (max-width: 520px) {
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-outline { width: 100%; text-align: center; max-width: 280px; }
+}
+</style>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+
+  :root {
+    --ink: #1a1410;
+    --parchment: #f5f0e8;
+    --warm-mid: #c8b89a;
+    --amber: #b5813b;
+    --rust: #8b4a2a;
+    --sage: #5a6b55;
+    --blush: #c4896f;
+    --deep: #2d1f14;
+    --card: #faf7f2;
+    --border: #ddd5c4;
+    --muted: #8a7d6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  #checkup-section body, .checkup-inner {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    padding: 0 0 80px 0;
+  }
+
+  header {
+    background: var(--deep);
+    color: var(--parchment);
+    text-align: center;
+    padding: 32px 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 60px,
+      rgba(181,129,59,0.04) 60px,
+      rgba(181,129,59,0.04) 61px
+    );
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 400;
+    color: var(--parchment);
+    position: relative;
+    line-height: 1.3;
+  }
+
+  header h1 em {
+    color: var(--blush);
+    font-style: italic;
+  }
+
+  .header-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--warm-mid);
+    margin-top: 8px;
+    font-style: italic;
+    position: relative;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* PHASE TABS */
+  .phase-nav {
+    display: flex;
+    gap: 0;
+    margin: 28px 0 0 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .phase-nav::-webkit-scrollbar { display: none; }
+
+  .phase-tab {
+    padding: 10px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .phase-tab.active {
+    color: var(--amber);
+    border-bottom-color: var(--amber);
+  }
+
+  /* SECTIONS */
+  .section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 20px 0 24px;
+    line-height: 1.6;
+  }
+
+  /* DOMAIN CARD */
+  .domain-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .domain-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .domain-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .domain-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  /* SLIDER */
+  .q-item {
+    margin-bottom: 18px;
+  }
+
+  .q-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    outline: none;
+    border-radius: 1px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--amber);
+    cursor: pointer;
+    border: 2px solid var(--parchment);
+    box-shadow: 0 0 0 1px var(--amber);
+  }
+
+  .slider-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--amber);
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .slider-poles {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* CHECKBOX GRID */
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .check-item input[type=checkbox] {
+    display: none;
+  }
+
+  .check-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.15s;
+  }
+
+  .check-item input:checked + .check-box {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .check-item input:checked + .check-box::after {
+    content: '✓';
+    position: absolute;
+    top: -1px;
+    left: 1px;
+    font-size: 11px;
+    color: white;
+  }
+
+  .check-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* TEXTAREA */
+  textarea {
+    width: 100%;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    resize: vertical;
+    min-height: 80px;
+    margin-top: 6px;
+    outline: none;
+    line-height: 1.5;
+  }
+
+  textarea:focus {
+    border-color: var(--amber);
+  }
+
+  textarea::placeholder {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* GENERATE BUTTON */
+  .generate-btn {
+    display: block;
+    width: 100%;
+    margin: 28px 0 0;
+    padding: 16px;
+    background: var(--deep);
+    color: var(--parchment);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .generate-btn:hover { background: var(--rust); }
+
+  /* RESULTS */
+  #results {
+    margin-top: 28px;
+  }
+
+  .results-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--deep);
+  }
+
+  .results-timestamp {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  /* TERRAIN MAP */
+  .terrain-map {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .terrain-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .domain-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .domain-bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    width: 80px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 1px;
+    transition: width 0.8s ease;
+  }
+
+  .bar-fill.critical { background: var(--rust); }
+  .bar-fill.low { background: var(--blush); }
+  .bar-fill.moderate { background: var(--amber); }
+  .bar-fill.good { background: var(--sage); }
+
+  .bar-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    width: 32px;
+    text-align: right;
+  }
+
+  /* INSIGHT CARDS */
+  .insight-card {
+    border-left: 3px solid var(--amber);
+    padding: 16px 16px 16px 18px;
+    background: var(--card);
+    margin-bottom: 12px;
+  }
+
+  .insight-card.alert { border-left-color: var(--rust); }
+  .insight-card.note { border-left-color: var(--sage); }
+
+  .insight-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .insight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* PROTOCOL TABLE */
+  .protocol-section {
+    margin-bottom: 20px;
+  }
+
+  .protocol-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .protocol-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(200,184,154,0.2);
+    align-items: flex-start;
+  }
+
+  .p-priority {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .p-priority.high { background: var(--rust); }
+  .p-priority.med { background: var(--amber); }
+  .p-priority.low { background: var(--sage); }
+
+  .p-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .p-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* FLOWCHART */
+  .flowchart {
+    margin-top: 10px;
+  }
+
+  .flow-node {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    margin-bottom: 0;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .flow-node.root {
+    background: var(--deep);
+    color: var(--parchment);
+    border-color: var(--deep);
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+  }
+
+  .flow-node.domain-node {
+    border-left: 3px solid var(--amber);
+    margin-left: 20px;
+  }
+
+  .flow-node.action-node {
+    border-left: 3px solid var(--sage);
+    margin-left: 40px;
+    background: var(--parchment);
+    font-size: 14px;
+  }
+
+  .flow-node.urgent-node {
+    border-left: 3px solid var(--rust);
+    margin-left: 40px;
+    background: rgba(139,74,42,0.04);
+    font-size: 14px;
+  }
+
+  .flow-arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 3px 0;
+    margin-left: 10px;
+  }
+
+  .flow-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 18px;
+  }
+
+  .loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: var(--amber);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  .save-bar {
+    display: flex;
+    gap: 10px;
+    margin: 24px 0 8px;
+  }
+
+  .save-btn {
+    flex: 1;
+    padding: 13px;
+    background: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .save-btn:hover { background: var(--ink); color: var(--parchment); border-color: var(--ink); }
+  .save-btn.primary { background: var(--deep); color: var(--parchment); border-color: var(--deep); }
+  .save-btn.primary:hover { background: var(--rust); border-color: var(--rust); }
+
+  .selah-footer {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .nav-btn {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover, .nav-btn.primary {
+    background: var(--deep);
+    color: var(--parchment);
+    border-color: var(--deep);
+  }
+
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 16px 0 0;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+
+  .dot.done { background: var(--sage); }
+  .dot.active { background: var(--amber); }
+
+
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+      :root{--ink:#1a1410;--parchment:#f5f0e8;--amber:#b5813b;--rust:#8b4a2a;--sage:#5a6b55;--blush:#c4896f;--deep:#2d1f14;--card:#faf7f2;--border:#ddd5c4;--muted:#8a7d6b;}
+      .print-page{background:white;color:var(--ink);font-family:'DM Mono',monospace;padding:40px;max-width:700px;margin:0 auto;}
+      .print-header{text-align:center;border-bottom:2px solid var(--deep);padding-bottom:20px;margin-bottom:30px;}
+      .print-header h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;}
+      .print-header h1 em{color:var(--blush);font-style:italic;}
+      .print-header p{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:6px;}
+      .results-header{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:4px;}
+      .results-timestamp{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:20px;}
+      .terrain-map{background:var(--card);border:1px solid var(--border);padding:16px;margin-bottom:14px;}
+      .terrain-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+      .domain-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+      .domain-bar-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:80px;flex-shrink:0;text-transform:uppercase;}
+      .bar-track{flex:1;height:5px;background:var(--border);border-radius:1px;overflow:hidden;}
+      .bar-fill{height:100%;border-radius:1px;}
+      .bar-fill.critical{background:var(--rust);}.bar-fill.low{background:var(--blush);}.bar-fill.moderate{background:var(--amber);}.bar-fill.good{background:var(--sage);}
+      .bar-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:32px;text-align:right;}
+      .insight-card{border-left:3px solid var(--amber);padding:14px 14px 14px 16px;background:var(--card);margin-bottom:10px;}
+      .insight-card.alert{border-left-color:var(--rust);}.insight-card.note{border-left-color:var(--sage);}
+      .insight-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+      .insight-text{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--ink);line-height:1.5;}
+      .protocol-section{margin-bottom:16px;}
+      .protocol-heading{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+      .protocol-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(200,184,154,0.2);align-items:flex-start;}
+      .p-priority{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+      .p-priority.high{background:var(--rust);}.p-priority.med{background:var(--amber);}.p-priority.low{background:var(--sage);}
+      .p-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--ink);line-height:1.4;flex:1;}
+      .p-category{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+      .flow-node{padding:12px 14px;border:1px solid var(--border);background:var(--card);margin-bottom:0;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.4;color:var(--ink);}
+      .flow-node.root{background:var(--deep);color:white;text-align:center;font-family:'Playfair Display',serif;}
+      .flow-node.domain-node{border-left:3px solid var(--amber);margin-left:16px;}
+      .flow-node.action-node{border-left:3px solid var(--sage);margin-left:32px;font-size:13px;}
+      .flow-node.urgent-node{border-left:3px solid var(--rust);margin-left:32px;font-size:13px;}
+      .flow-arrow{text-align:center;color:var(--muted);font-size:12px;padding:2px 0;margin-left:8px;}
+      hr{border:none;border-top:1px solid var(--border);margin:18px 0;}
+      .save-bar{display:none;}
+      .selah-footer{text-align:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:30px;padding-top:16px;border-top:1px solid var(--border);}
+      @media print{.print-page{padding:20px;}button{display:none;}}
+    
+
+/* ── RECOGNITION STRIP ── */
+.section-recognition {
+  background: var(--rust);
+  padding: 28px 24px;
+  overflow: hidden;
+}
+
+.recognition-track {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.recognition-item {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--parchment);
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.recognition-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(246,241,232,0.4);
+  flex-shrink: 0;
+}
+
+/* ── THAT'S ME ── */
+.section-thatsme {
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 100px 24px;
+}
+
+.thatsme-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.thatsme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 700px) { .thatsme-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .thatsme-grid { grid-template-columns: 1fr; } }
+
+.thatsme-card {
+  border: 1px solid var(--border);
+  padding: 22px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.thatsme-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.thatsme-card:hover::before,
+.thatsme-card.active::before { transform: scaleX(1); }
+
+.thatsme-card:hover,
+.thatsme-card.active {
+  border-color: var(--amber);
+  background: white;
+}
+
+.thatsme-emoji {
+  font-size: 22px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.thatsme-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--deep);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.thatsme-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+/* expanded state */
+.thatsme-expand {
+  display: none;
+  margin-top: 0;
+  background: var(--deep);
+  color: var(--parchment);
+  padding: 40px 32px;
+  border-left: 3px solid var(--blush);
+  animation: expandIn 0.3s ease;
+}
+
+@keyframes expandIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.thatsme-expand.open { display: block; }
+
+.expand-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3.5vw, 30px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--parchment);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.expand-.about-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--warm);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+
+.expand-body + .expand-.expand-body + .expand-body { margin-top: -4px; }
+
+.expand-truth {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--blush);
+  border-left: 2px solid var(--blush);
+  padding-left: 16px;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.expand-cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: var(--amber);
+  color: var(--deep);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.expand-cta:hover { background: var(--amber-light); }
+
+/* ── BLOG ── */
+.section-blog {
+  background: var(--mid);
+  padding: 100px 24px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 52px;
+}
+
+@media (max-width: 680px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.blog-featured {
+  grid-column: 1 / -1;
+  background: var(--deep);
+  border: 1px solid rgba(201,185,154,0.1);
+  padding: 48px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.blog-featured:hover { border-color: rgba(176,125,53,0.4); }
+
+@media (max-width: 680px) { .blog-featured { grid-template-columns: 1fr; padding: 28px 24px; } }
+
+.blog-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,185,154,0.08);
+  padding: 32px 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.blog-card:hover { background: rgba(176,125,53,0.07); border-color: rgba(176,125,53,0.25); }
+
+.blog-category {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+
+.blog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--parchment);
+  margin-bottom: 14px;
+}
+
+.blog-title em { font-style: italic; color: var(--blush); }
+
+.blog-excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--warm);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.blog-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.blog-read-more {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.blog-read-more::after { content: '→'; }
+
+/* blog modal */
+.blog-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(22,18,13,0.92);
+  z-index: 2000;
+  overflow-y: auto;
+  padding: 40px 24px;
+}
+
+.blog-modal-overlay.open { display: block; }
+
+.blog-modal {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 52px 44px;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+
+@media (max-width: 600px) { .blog-modal { padding: 32px 24px; } }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blog-modal-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.blog-modal-close:hover { background: var(--deep); color: var(--parchment); border-color: var(--deep); }
+
+.blog-modal-category {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+
+.blog-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 5vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--deep);
+  margin-bottom: 12px;
+}
+
+.blog-modal-title em { font-style: italic; color: var(--rust); }
+
+.blog-modal-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-modal-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--mid);
+  line-height: 1.75;
+}
+
+.blog-modal-body p { margin-bottom: 20px; }
+
+.blog-modal-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--deep);
+  margin: 36px 0 14px;
+}
+
+.blog-modal-body blockquote {
+  border-left: 3px solid var(--blush);
+  padding-left: 20px;
+  margin: 28px 0;
+  font-style: italic;
+  color: var(--rust);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.blog-modal-body .highlight {
+  background: rgba(176,125,53,0.08);
+  padding: 20px 22px;
+  border-left: 3px solid var(--amber);
+  margin: 24px 0;
+  font-size: 17px;
+}
+
+.blog-modal-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blog-modal-author {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── ENCOURAGEMENT BANNER ── */
+.section-encouragement {
+  background: var(--blush);
+  padding: 70px 24px;
+  text-align: center;
+}
+
+.enc-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4.5vw, 40px);
+  font-style: italic;
+  font-weight: 300;
+  color: white;
+  max-width: 700px;
+  margin: 0 auto 16px;
+  line-height: 1.3;
+}
+
+.enc-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+</style>
+<style>
+#checkup-section { position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; overflow-y:auto; }
+body.checkup-open { overflow:hidden; }
+
+/* ── DESKTOP FIXES ── */
+@media (min-width: 1024px) {
+  .section-inner { padding: 0 40px; }
+  .hero { padding: 80px 48px 100px; }
+  .hero-title { font-size: 96px; }
+  .two-col { grid-template-columns: 1fr 1fr; gap: 80px; }
+  .domains-grid { grid-template-columns: repeat(3, 1fr); }
+  .who-cards { grid-template-columns: repeat(3, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+  .thatsme-grid { grid-template-columns: repeat(3, 1fr); }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .blog-featured { grid-template-columns: 1fr 1fr; }
+  .steps { max-width: 700px; }
+  .container { max-width: 720px; padding: 0 32px; }
+  .blog-modal { padding: 60px 52px; }
+  .thatsme-expand { padding: 48px 40px; }
+}
+
+@media (min-width: 1280px) {
+  .section-what,
+  .section-domains,
+  .section-how,
+  .section-who,
+  .section-pricing,
+  .section-about,
+  .section-thatsme,
+  .section-blog { padding: 120px 48px; }
+  .section-inner { max-width: 1100px; }
+  .hero-sub { font-size: 22px; max-width: 600px; }
+}
+
+
+/* ── VIEW TOGGLE ── */
+.view-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  background: var(--deep, #1e1409);
+  border: 1px solid rgba(201,185,154,0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.view-toggle-btn {
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(201,185,154,0.5);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.view-toggle-btn.active {
+  background: rgba(176,125,53,0.2);
+  color: #c9b99a;
+}
+
+.view-toggle-btn:hover { color: #c9b99a; }
+
+.view-toggle-divider {
+  width: 1px;
+  background: rgba(201,185,154,0.2);
+  margin: 8px 0;
+}
+
+/* Mobile forced view */
+body.force-mobile {
+  max-width: 390px;
+  margin: 0 auto;
+  box-shadow: 0 0 0 1px rgba(201,185,154,0.1), 0 0 60px rgba(0,0,0,0.5);
+}
+
+body.force-mobile .view-toggle {
+  right: 50%;
+  transform: translateX(50%);
+}
+
+
+/* ── SPOTIFY PLAYER ── */
+.spotify-player {
+  position: fixed;
+  bottom: 80px;
+  left: 24px;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.spotify-toggle {
+  background: #1a1410;
+  border: 1px solid rgba(201,185,154,0.3);
+  color: #c9b99a;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  width: 100%;
+  border-bottom: none;
+}
+
+.spotify-toggle:hover { background: rgba(176,125,53,0.15); }
+
+.spotify-toggle .spotify-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1DB954;
+  flex-shrink: 0;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.spotify-embed-wrap {
+  display: none;
+  width: 300px;
+  border: 1px solid rgba(201,185,154,0.2);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.spotify-embed-wrap.open {
+  display: block;
+}
+
+@media (max-width: 400px) {
+  .spotify-embed-wrap { width: 260px; }
+  .spotify-player { left: 12px; bottom: 140px; }
+}
+
+
+/* -- CONTACT + WAITLIST -- */
+.section-contact {
+  background: var(--deep);
+  padding: 100px 24px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 52px;
+}
+
+@media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-panel {
+  border: 1px solid rgba(201,185,154,0.15);
+  padding: 36px 32px;
+  position: relative;
+}
+
+.contact-panel-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.contact-panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--parchment);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.contact-panel-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--warm);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.form-field {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,185,154,0.2);
+  color: var(--parchment);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9b99a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form-select option { background: #1e1409; color: var(--parchment); }
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--amber);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: rgba(201,185,154,0.3); font-style: italic; }
+
+.form-textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--amber);
+  color: var(--deep);
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.form-submit:hover { background: var(--amber-light); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.form-success-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.form-success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--parchment);
+  margin-bottom: 8px;
+}
+
+.form-success-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--warm);
+  line-height: 1.6;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span></span>
+    Selah Practice
+    <span></span>
+  </div>
+  <h1 class="hero-title">
+    The <em>Selah</em>
+    <span class="line2">Check-Up</span>
+  </h1>
+  <p class="hero-sub">
+    An integrative assessment for the whole person —<br>
+    body, mind, spirit, and the systems you're holding.
+  </p>
+  <div class="hero-cta-group">
+    <a href="javascript:void(0)" onclick="openCheckup()" class="btn-primary">Begin the Assessment</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})" class="btn-outline">Learn More</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section class="section-what" id="what">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="col-text">
+        <div class="section-label">What It Is</div>
+        <h2 class="section-heading">
+          Not a symptom checker.<br>
+          A <em>terrain map.</em>
+        </h2>
+        <p class="section-body">
+          The Selah Check-Up is a clinically-informed, faith-rooted integrative assessment that reads across six domains of your wellbeing — then synthesises what it finds into a personalised protocol, a PNI-layer interpretation, and an honest reflection of where you actually are.
+        </p>
+        <p class="section-body" style="margin-top:16px">
+          Most health tools address one thing at a time. The Selah Check-Up was built on the understanding that the body, the mind, the spirit, and the life you're holding are not separate systems. They speak to each other — and this tool listens to all of it.
+        </p>
+      </div>
+      <div class="col-visual" style="padding-top: 8px;">
+        <div style="border:1px solid var(--border); padding: 28px; background: var(--cream);">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:20px;">What You Receive</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--rust);flex-shrink:0;margin-top:6px;"></div>
+              <div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:3px;">TERRAIN MAP</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mid);line-height:1.4;">Visual snapshot of your vitality across all six domains</div></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:6px;"></div>
+              <div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:3px;">PNI INTERPRETATION</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mid);line-height:1.4;">How your stress, relational, and spiritual load is showing up in your body</div></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0;margin-top:6px;"></div>
+              <div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:3px;">TIERED PROTOCOL</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mid);line-height:1.4;">Today, this week, and when your labs return</div></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--blush);flex-shrink:0;margin-top:6px;"></div>
+              <div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:3px;">INTEGRATIVE FLOWCHART</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mid);line-height:1.4;">A visual map of where to focus and in what order</div></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--warm);flex-shrink:0;margin-top:6px;"></div>
+              <div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:3px;">SELAH WORD + REFLECTION</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--mid);line-height:1.4;">A grounding word and a closing note written directly to you</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section class="section-domains" id="domains">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--warm);">Six Domains</div>
+    <h2 class="section-heading" style="color:var(--parchment);">Everything that makes you <em style="color:var(--blush)">you</em></h2>
+    <div class="domains-grid">
+      <div class="domain-tile">
+        <span class="domain-tile-icon">⬡</span>
+        <div class="domain-tile-name">Physical</div>
+        <div class="domain-tile-desc">Energy, sleep, nourishment, movement, and your body's active symptoms</div>
+      </div>
+      <div class="domain-tile">
+        <span class="domain-tile-icon">◈</span>
+        <div class="domain-tile-name">Neuro-Emotional</div>
+        <div class="domain-tile-desc">Mood, focus, emotional regulation, cognitive clarity, and what's sitting unnamed</div>
+      </div>
+      <div class="domain-tile">
+        <span class="domain-tile-icon">◎</span>
+        <div class="domain-tile-name">HPA + Hormonal</div>
+        <div class="domain-tile-desc">Stress axis function, cortisol patterns, endocrine indicators, and med consistency</div>
+      </div>
+      <div class="domain-tile">
+        <span class="domain-tile-icon">⌀</span>
+        <div class="domain-tile-name">Relational</div>
+        <div class="domain-tile-desc">Felt connection, relational stressors, loneliness, and what's unresolved</div>
+      </div>
+      <div class="domain-tile">
+        <span class="domain-tile-icon">✦</span>
+        <div class="domain-tile-name">Spiritual</div>
+        <div class="domain-tile-desc">Faith connection, meaning, hope, community, and your inner life</div>
+      </div>
+      <div class="domain-tile">
+        <span class="domain-tile-icon">⊞</span>
+        <div class="domain-tile-name">Systems</div>
+        <div class="domain-tile-desc">Financial pressure, work and academic load, life transitions, and structural stressors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-how" id="how">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-heading">Simple to use.<br>Deep by design.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Move through six domains</div>
+          <div class="step-text">Sliders, checkboxes, and open-text prompts — each section takes 2-3 minutes. There's no right or wrong. Just honest.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Generate your assessment</div>
+          <div class="step-text">An AI-powered integrative interpreter reads your full terrain — physical, emotional, hormonal, relational, spiritual, and systemic — at once.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Receive your protocol</div>
+          <div class="step-text">You get a tiered action plan, a PNI-layer interpretation, a flowchart, and a closing reflection — all grounded in integrative health principles.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Save + revisit</div>
+          <div class="step-text">Download your assessment as a PDF or copy it to your notes. Return to it monthly, or any time you feel like you've lost the thread of yourself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section-who" id="who">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--warm);">Who It's For</div>
+    <h2 class="section-heading" style="color:var(--parchment);">Built for people carrying <em style="color:var(--blush);">a lot.</em></h2>
+    <div class="who-cards">
+      <div class="who-card">
+        <div class="who-card-title">The high-functioning depleted</div>
+        <div class="who-card-text">You're keeping it together on the outside. But something in you knows it's not sustainable. You need someone — or something — to name it with you.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-card-title">The spiritually grounded health-seeker</div>
+        <div class="who-card-text">You know your faith and your body aren't separate. You want a tool that holds both without flattening either.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-card-title">The practitioner in their own healing</div>
+        <div class="who-card-text">You care for others for a living. The Selah Check-Up was built by a Wounded Healer — for the ones who know how to help everyone but themselves.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RECOGNITION TICKER -->
+<div class="section-recognition">
+  <div class="recognition-track" id="ticker">
+    <span class="recognition-item">"I'm tired but I don't know why"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"My body is trying to tell me something"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I need someone to just see me"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I keep pushing through but I'm running on empty"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I'm spiritually dry and I don't know how to fix it"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I take care of everyone else"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"Something feels off but the tests come back normal"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I just want to feel like myself again"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I'm tired but I don't know why"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"My body is trying to tell me something"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I need someone to just see me"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I keep pushing through but I'm running on empty"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I'm spiritually dry and I don't know how to fix it"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I take care of everyone else"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"Something feels off but the tests come back normal"</span><div class="recognition-dot"></div>
+    <span class="recognition-item">"I just want to feel like myself again"</span><div class="recognition-dot"></div>
+  </div>
+</div>
+
+<!-- THAT'S ME -->
+<section class="section-thatsme" id="thatsme">
+  <div class="section-inner">
+    <div class="section-label">You might be here because</div>
+    <h2 class="section-heading">Something in this <em>speaks to you.</em></h2>
+    <p class="thatsme-intro">Click the one that feels most like where you are right now.</p>
+
+    <div class="thatsme-grid">
+      <div class="thatsme-card" onclick="openThatsMe('drained')">
+        <span class="thatsme-emoji">🕯️</span>
+        <div class="thatsme-title">I'm spiritually drained and I don't know how to come back</div>
+        <div class="thatsme-tag">Spiritual Depletion</div>
+      </div>
+      <div class="thatsme-card" onclick="openThatsMe('body')">
+        <span class="thatsme-emoji">🌿</span>
+        <div class="thatsme-title">My body keeps signalling something and no one's listening</div>
+        <div class="thatsme-tag">Body Wisdom</div>
+      </div>
+      <div class="thatsme-card" onclick="openThatsMe('burden')">
+        <span class="thatsme-emoji">🪨</span>
+        <div class="thatsme-title">I'm carrying weight that was never mine to carry alone</div>
+        <div class="thatsme-tag">Burden & Release</div>
+      </div>
+      <div class="thatsme-card" onclick="openThatsMe('held')">
+        <span class="thatsme-emoji">🤍</span>
+        <div class="thatsme-title">I just want to be held — not fixed, not advised. Held.</div>
+        <div class="thatsme-tag">Being Seen</div>
+      </div>
+      <div class="thatsme-card" onclick="openThatsMe('high')">
+        <span class="thatsme-emoji">🔥</span>
+        <div class="thatsme-title">I'm high-functioning but I'm falling apart on the inside</div>
+        <div class="thatsme-tag">The Capable Depleted</div>
+      </div>
+      <div class="thatsme-card" onclick="openThatsMe('healer')">
+        <span class="thatsme-emoji">💊</span>
+        <div class="thatsme-title">I help people heal for a living and I'm the last one I take care of</div>
+        <div class="thatsme-tag">The Wounded Healer</div>
+      </div>
+    </div>
+
+    <!-- Expanded panels -->
+    <div class="thatsme-expand" id="tm-drained">
+      <div class="expand-headline">"I used to feel God so close. Now I just feel… quiet."</div>
+      <p class="expand-body">Spiritual depletion isn't a faith problem. It's a whole-person problem. When your nervous system is dysregulated, when your body is inflamed, when your relational world is heavy — your spirit feels it too. The dryness you're experiencing isn't abandonment. It's your whole system asking for rest it was never given permission to take.</p>
+      <div class="expand-truth">"You are not backsliding. You are depleted. There is a difference — and it matters."</div>
+      <p class="expand-body">Psychoneuroimmunology tells us that chronic stress suppresses the brain regions responsible for meaning-making, awe, and transcendence. The part of you that used to feel wonder isn't gone. It's under load. And load can be lifted.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+
+    <div class="thatsme-expand" id="tm-body">
+      <div class="expand-headline">"The tests come back normal. But I know something is wrong."</div>
+      <p class="expand-body">You are not imagining it. The body speaks in symptoms long before conventional labs catch up. Fatigue that doesn't lift with sleep. Hair that's thinning slowly. Skin that keeps flaring. A cycle that's never quite right. These aren't random. They're a language — and they deserve a practitioner who actually speaks it.</p>
+      <div class="expand-truth">"Normal on paper doesn't mean well. Functional medicine knows this. And now, so should you."</div>
+      <p class="expand-body">The Selah Check-Up was built by a practitioner trained in integrative care, functional nutrition, and clinical psychoneuroimmunology — someone who understands that your HPA axis, your thyroid, your gut, your stress load, and your spiritual life are not separate systems. They are one conversation.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+
+    <div class="thatsme-expand" id="tm-burden">
+      <div class="expand-headline">"I hold space for everyone. Who holds it for me?"</div>
+      <p class="expand-body">You are the one people call. The one who shows up. The one who absorbs the room. And somewhere along the way, you started to believe that needing was weakness — that your job was to give, and wanting to receive made you too much.</p>
+      <div class="expand-truth">"The weight you're carrying has a name. And some of it was never yours."</div>
+      <p class="expand-body">Chronic relational burden activates the same stress pathways as physical threat. Your cortisol doesn't know the difference between a crisis in someone else's life and one in yours. Your nervous system has been in low-grade emergency for a long time. That's not a character flaw. That's a physiological reality — and it can change.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+
+    <div class="thatsme-expand" id="tm-held">
+      <div class="expand-headline">"Stop trying to fix me. I just need someone to sit with me in it."</div>
+      <p class="expand-body">There is a particular kind of exhaustion that comes from being surrounded by people who want to help — but no one who just stays. Who witnesses. Who says: I see what you're carrying and I'm not moving until you're ready.</p>
+      <div class="expand-truth">"Being informed without being felt is just more noise. You deserve both."</div>
+      <p class="expand-body">Selah Practice was built on this exact tension. Real care isn't protocols without presence. It's clinical knowledge held in a warm hand. The Selah Check-Up doesn't just give you a plan — it sees you first. Because that's where healing actually starts.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+
+    <div class="thatsme-expand" id="tm-high">
+      <div class="expand-headline">"I'm killing it on the outside. I am dying on the inside."</div>
+      <p class="expand-body">High-functioning depletion is one of the most invisible forms of suffering because it wears the face of success. You meet your deadlines. You show up for your people. You have goals and you're hitting them. And underneath all of it, something is quietly unraveling.</p>
+      <div class="expand-truth">"Performing wellness and experiencing it are two entirely different things. You know which one you've been doing."</div>
+      <p class="expand-body">The nervous system doesn't care how productive you've been. It keeps score in the body — in your sleep, your digestion, your mood, your skin, your cycle. The Selah Check-Up is the permission slip to stop performing and start actually checking in. No one is watching. It's just you and the truth of where you are.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+
+    <div class="thatsme-expand" id="tm-healer">
+      <div class="expand-headline">"I know exactly what my clients need. I have no idea what I need."</div>
+      <p class="expand-body">The Wounded Healer archetype is not a warning — it's a calling. But only if the wound is tended. Practitioners, caregivers, educators, community workers: you are trained to read other people's systems while running yours into the ground. You give from reserves you pretend are full.</p>
+      <div class="expand-truth">"You cannot pour from a cup that you've never let anyone refill."</div>
+      <p class="expand-body">Selah Practice was built by someone who lives this. Who understands that the Wounded Healer's greatest work begins when she finally turns the care inward. The Selah Check-Up was designed for you specifically — someone with enough clinical literacy to understand the results, and enough need to actually use them.</p>
+      <button class="expand-cta" onclick="openCheckup()">Begin Your Check-Up →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ENCOURAGEMENT BANNER -->
+<div class="section-encouragement">
+  <p class="enc-quote">"You are not behind. You are not broken. You are a whole person in the middle of something hard — and that deserves a whole-person response."</p>
+  <div class="enc-sub">— Selah Practice</div>
+</div>
+
+<!-- BLOG -->
+<section class="section-blog" id="blog">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--warm);">From the Journal</div>
+    <h2 class="section-heading" style="color:var(--parchment);">Read yourself into <em style="color:var(--blush)">understanding.</em></h2>
+
+    <div class="blog-grid">
+
+      <div class="blog-featured" onclick="openBlog('cortisol')">
+        <div>
+          <div class="blog-category">HPA Axis · Stress Biology</div>
+          <div class="blog-title">Why You're Exhausted Even After a Full Night's Sleep — <em>It's Not Laziness. It's Cortisol.</em></div>
+          <div class="blog-excerpt">When your adrenal glands have been running a low-grade emergency for long enough, sleep stops being restorative. Here's what's actually happening in your body — and what to do about it.</div>
+          <div class="blog-read-more">Read Article</div>
+        </div>
+        <div>
+          <div style="background:rgba(176,125,53,0.1);border:1px solid rgba(176,125,53,0.2);padding:28px;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--warm);line-height:1.6;font-style:italic;">
+            "The problem isn't that you're not sleeping enough. The problem is that your nervous system never got the memo that the emergency is over."
+          </div>
+          <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;">8 min read · HPA Dysregulation</div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog('pni')">
+        <div class="blog-category">Psychoneuroimmunology</div>
+        <div class="blog-title">Your Feelings Are Biochemical — <em>And That's Not Reductive, It's Actually Good News</em></div>
+        <div class="blog-excerpt">PNI explains why grief makes you sick, why loneliness ages you faster, and why church community is actually a health intervention.</div>
+        <div class="blog-meta">6 min read</div>
+        <div class="blog-read-more">Read Article</div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog('spiritualdryness')">
+        <div class="blog-category">Faith + Physiology</div>
+        <div class="blog-title">When the Worship Doesn't Move You Anymore — <em>A Clinical and Spiritual Framework</em></div>
+        <div class="blog-excerpt">Spiritual dryness has a neurobiology. This is what's happening in your brain — and why it's not a sign you've lost your faith.</div>
+        <div class="blog-meta">7 min read</div>
+        <div class="blog-read-more">Read Article</div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog('insulin')">
+        <div class="blog-category">Metabolic Health · Women</div>
+        <div class="blog-title">The Acanthosis Nigricans No One Explained to You — <em>What Your Skin Is Saying About Your Hormones</em></div>
+        <div class="blog-excerpt">That darkening on your neck isn't a hygiene issue. It's your body writing a message in the only language it has left — and it's time someone translated it.</div>
+        <div class="blog-meta">9 min read</div>
+        <div class="blog-read-more">Read Article</div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog('woundedhealer')">
+        <div class="blog-category">Caregiver Wellness</div>
+        <div class="blog-title">The Wounded Healer Isn't a Metaphor — <em>It's a Calling That Requires a Body</em></div>
+        <div class="blog-excerpt">You chose this work because you've lived something. But the wound that called you in will eventually close the door — unless you tend it.</div>
+        <div class="blog-meta">7 min read</div>
+        <div class="blog-read-more">Read Article</div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog('wrestling')">
+        <div class="blog-category">Wrestling Beautifully</div>
+        <div class="blog-title">Jacob Limped. And He Was Still Blessed. — <em>On Not Having to Be Whole Before You're Worthy</em></div>
+        <div class="blog-excerpt">The wrestling match left a mark. That's the point. Transformation and wounding aren't opposites — they're the same event.</div>
+        <div class="blog-meta">5 min read</div>
+        <div class="blog-read-more">Read Article</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BLOG MODAL -->
+<div class="blog-modal-overlay" id="blogModal">
+  <div class="blog-modal">
+    <button class="blog-modal-close" onclick="closeBlog()">✕ Close</button>
+    <div class="blog-modal-category" id="bm-category"></div>
+    <h2 class="blog-modal-title" id="bm-title"></h2>
+    <div class="blog-modal-meta" id="bm-meta"></div>
+    <div class="blog-modal-body" id="bm-body"></div>
+    <div class="blog-modal-footer">
+      <div class="blog-modal-author">By Pennye · Selah Practice</div>
+      <button class="expand-cta" onclick="openCheckup(); closeBlog();">Take the Check-Up →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section-pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Access</div>
+    <h2 class="section-heading">Choose how you work with it</h2>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-tag">Personal Use</div>
+        <div class="pricing-name">Single Assessment</div>
+        <div class="pricing-price"><span>$</span>0</div>
+        <ul class="pricing-list">
+          <li>Full six-domain assessment</li>
+          <li>AI-generated protocol</li>
+          <li>PDF save &amp; copy</li>
+          <li>Personal use only</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="openCheckup()" class="pricing-btn">Begin Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="pricing-tag">For Clients</div>
+        <div class="pricing-name">Guided Session</div>
+        <div class="pricing-price"><span>$</span>97</div>
+        <ul class="pricing-list">
+          <li>Assessment + 60-min debrief</li>
+          <li>Practitioner-reviewed protocol</li>
+          <li>Supplement + lifestyle guidance</li>
+          <li>PNI-informed care plan</li>
+          <li>Follow-up check-in included</li>
+        </ul>
+        <a href="mailto:hello@selahpractice.ca" class="pricing-btn">Book a Session</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tag">For Practitioners</div>
+        <div class="pricing-name">License</div>
+        <div class="pricing-price"><span>$</span>197</div>
+        <ul class="pricing-list">
+          <li>Use with your clients</li>
+          <li>Branded or white-label</li>
+          <li>Practitioner guide included</li>
+          <li>Ongoing updates</li>
+        </ul>
+        <a href="mailto:hello@selahpractice.ca" class="pricing-btn">Inquire</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-about" id="about">
+  <div class="about-inner">
+    <div class="about-ornament">✦</div>
+    <blockquote class="about-quote">
+      "The Selah Check-Up was born from the question I kept asking myself — <em>what is actually happening in me right now?</em>"
+    </blockquote>
+    <p class="about-text">
+      I'm Pennye — a public health professional, integrative care practitioner in training, and someone who has spent years studying the body while also being one. I built this tool because I needed it. Because standard check-ins don't go deep enough. Because the body, the mind, the spirit, and the circumstances of your life are one system — and you deserve an assessment that treats them that way.
+    </p>
+    <p class="about-text">
+      Selah Practice was built on a framework I call Wrestling Beautifully — the belief that the messy, honest, sometimes painful process of becoming whole is sacred work. This tool is part of that.
+    </p>
+    <div class="about-name">Pennye · Selah Practice</div>
+    <div class="about-credentials">
+      BHSc Health Science · Certificate in Public Health · Health Educator<br>
+      Postgraduate in Clinical Psychoneuroimmunology<br>
+      MHSc Integrative Health &amp; Functional/Integrative Nutrition (Candidate), NWHSU<br>
+      Master of Social Work (Candidate), DSU<br>
+      NBC-HWC (Candidate)
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT + WAITLIST -->
+<section class="section-contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--warm);">Connect</div>
+    <h2 class="section-heading" style="color:var(--parchment);">You don't have to figure it out <em style="color:var(--blush);">alone.</em></h2>
+
+    <div class="contact-grid">
+
+      <!-- WAITLIST -->
+      <div class="contact-panel">
+        <div class="contact-panel-label">Waitlist</div>
+        <div class="contact-panel-title">Be the first to know when Selah Practice opens.</div>
+        <div class="contact-panel-desc">Sessions are limited and intentional. Join the waitlist to be notified when 1:1 spots become available.</div>
+        <div id="waitlist-form">
+          <div class="form-field">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" id="wl-name" placeholder="First name is enough">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" id="wl-email" placeholder="Where should I reach you?">
+          </div>
+          <div class="form-field">
+            <label class="form-label">What brings you here?</label>
+            <select class="form-select" id="wl-reason">
+              <option value="">Select one...</option>
+              <option value="integrative-checkup">The Selah Check-Up</option>
+              <option value="1on1-coaching">1:1 Integrative Coaching</option>
+              <option value="pni-consult">PNI + Functional Health Consult</option>
+              <option value="practitioner-license">Practitioner Licensing</option>
+              <option value="just-exploring">Just exploring for now</option>
+            </select>
+          </div>
+          <button class="form-submit" onclick="submitWaitlist()">Join the Waitlist</button>
+        </div>
+        <div class="form-success" id="waitlist-success">
+          <div class="form-success-icon">✦</div>
+          <div class="form-success-title">You're on the list.</div>
+          <div class="form-success-text">I'll reach out personally when spots open. Thank you for trusting Selah Practice with your health journey.</div>
+        </div>
+      </div>
+
+      <!-- INTAKE FORM -->
+      <div class="contact-panel">
+        <div class="contact-panel-label">Intake & Enquiry</div>
+        <div class="contact-panel-title">Tell me where you are. I'll meet you there.</div>
+        <div class="contact-panel-desc">Not sure what you need yet? That's okay. Fill this out and I'll respond within 48 hours.</div>
+        <div id="intake-form">
+          <div class="form-field">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" id="in-name" placeholder="What do you go by?">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" id="in-email" placeholder="Your email">
+          </div>
+          <div class="form-field">
+            <label class="form-label">What are you carrying right now?</label>
+            <textarea class="form-textarea" id="in-carrying" placeholder="Physical symptoms, emotional weight, life circumstances — whatever feels most present..."></textarea>
+          </div>
+          <div class="form-field">
+            <label class="form-label">What kind of support are you looking for?</label>
+            <select class="form-select" id="in-support">
+              <option value="">Select one...</option>
+              <option value="not-sure">I'm not sure yet</option>
+              <option value="integrative-coaching">Integrative health coaching</option>
+              <option value="pni-consult">PNI-informed consultation</option>
+              <option value="functional-nutrition">Functional nutrition support</option>
+              <option value="spiritual-wellness">Faith + wellness integration</option>
+              <option value="all-of-above">All of the above, honestly</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">How did you find Selah Practice?</label>
+            <input class="form-input" type="text" id="in-referral" placeholder="Word of mouth, social media, searching...">
+          </div>
+          <button class="form-submit" onclick="submitIntake()">Send My Enquiry</button>
+        </div>
+        <div class="form-success" id="intake-success">
+          <div class="form-success-icon">✦</div>
+          <div class="form-success-title">Received. Thank you.</div>
+          <div class="form-success-text">I read every enquiry personally. You'll hear from me within 48 hours. In the meantime, be gentle with yourself.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section-cta">
+  <h2 class="cta-heading">
+    Something in you<br>
+    already knows it's time<br>
+    to <em>pause and listen.</em>
+  </h2>
+  <p class="cta-sub">That's what Selah means.</p>
+  <div class="hero-cta-group" style="position:relative;">
+    <a href="javascript:void(0)" onclick="openCheckup()" class="btn-primary">Begin the Check-Up</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="btn-outline">Work with Pennye</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Selah Practice</div>
+  <div class="footer-links">
+    <a href="javascript:void(0)" onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">About the Tool</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('domains').scrollIntoView({behavior:'smooth'})">Six Domains</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How It Works</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Access</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Selah Practice · All rights reserved · Built with intentionality</div>
+</footer>
+
+
+
+
+<!-- EMBEDDED CHECK-UP TOOL -->
+
+<div id="checkup-section" style="display:none;">
+  <div style="background:#f5f0e8;min-height:100vh;">
+    <div style="background:#2d1f14;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c8b89a;">Selah Practice · Check-Up</div>
+      <button onclick="closeCheckup()" style="background:none;border:1px solid rgba(201,185,154,0.3);color:#c8b89a;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;">&#x2715; Close</button>
+    </div>
+
+<header>
+  <div class="header-eyebrow">Selah Practice · Integrative Check-In</div>
+  <h1>The <em>Selah</em> Check-Up</h1>
+  <div class="header-sub">body · mind · spirit · systems</div>
+</header>
+
+<div class="container">
+
+  <!-- PHASE NAV -->
+  <div class="phase-nav">
+    <button class="phase-tab active" onclick="showSection('s1',this)">01 · Physical</button>
+    <button class="phase-tab" onclick="showSection('s2',this)">02 · Neuro-Emotional</button>
+    <button class="phase-tab" onclick="showSection('s3',this)">03 · HPA + Hormonal</button>
+    <button class="phase-tab" onclick="showSection('s4',this)">04 · Relational</button>
+    <button class="phase-tab" onclick="showSection('s5',this)">05 · Spiritual</button>
+    <button class="phase-tab" onclick="showSection('s6',this)">06 · Systems</button>
+  </div>
+
+  <div class="progress-dots" id="progressDots">
+    <div class="dot active" id="dot0"></div>
+    <div class="dot" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+    <div class="dot" id="dot4"></div>
+    <div class="dot" id="dot5"></div>
+  </div>
+
+  <!-- SECTION 1: PHYSICAL -->
+  <div id="s1" class="section active">
+    <p class="section-intro">Your body is a communicator. Let's listen carefully to what it's been saying.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">⬡</div>
+        <div class="domain-title">Energy & Vitality</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Overall physical energy right now (not what it should be — what it is)</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_energy')" id="q_energy">
+          <div class="slider-val" id="v_energy">5</div>
+        </div>
+        <div class="slider-poles"><span>Depleted</span><span>Vital</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Sleep quality over the past 7 days</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_sleep')" id="q_sleep">
+          <div class="slider-val" id="v_sleep">5</div>
+        </div>
+        <div class="slider-poles"><span>Fragmented</span><span>Restorative</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Physical symptoms present (check all)</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="phys" value="fatigue"><div class="check-box"></div><span class="check-label">Fatigue/heaviness</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="headache"><div class="check-box"></div><span class="check-label">Head tension/fog</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="appetite"><div class="check-box"></div><span class="check-label">Appetite changes</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="gi"><div class="check-box"></div><span class="check-label">GI disruption</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="pain"><div class="check-box"></div><span class="check-label">Body aches/pain</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="skin"><div class="check-box"></div><span class="check-label">Skin flares</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="cycle"><div class="check-box"></div><span class="check-label">Cycle disruption</span></label>
+          <label class="check-item"><input type="checkbox" name="phys" value="immune"><div class="check-box"></div><span class="check-label">Getting sick easily</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Movement / exercise in past week</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_move')" id="q_move">
+          <div class="slider-val" id="v_move">5</div>
+        </div>
+        <div class="slider-poles"><span>None</span><span>Consistent</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Nourishment quality (not perfect — honest)</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_food')" id="q_food">
+          <div class="slider-val" id="v_food">5</div>
+        </div>
+        <div class="slider-poles"><span>Neglected</span><span>Nourishing</span></div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn primary" onclick="goNext('s2', 1)">Next → Neuro-Emotional</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: NEURO-EMOTIONAL -->
+  <div id="s2" class="section">
+    <p class="section-intro">The nervous system doesn't lie. This section maps your emotional and cognitive landscape right now.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">◈</div>
+        <div class="domain-title">Mood & Emotional State</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Emotional tone this week (overall)</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_mood')" id="q_mood">
+          <div class="slider-val" id="v_mood">5</div>
+        </div>
+        <div class="slider-poles"><span>Low/flat</span><span>Grounded/full</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Emotional symptoms present</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="emo" value="flat"><div class="check-box"></div><span class="check-label">Emotional flatness</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="irritable"><div class="check-box"></div><span class="check-label">Irritability</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="anxious"><div class="check-box"></div><span class="check-label">Anxiety/dread</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="sad"><div class="check-box"></div><span class="check-label">Sadness/grief</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="overwhelm"><div class="check-box"></div><span class="check-label">Overwhelm</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="numb"><div class="check-box"></div><span class="check-label">Numbness/detached</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="shame"><div class="check-box"></div><span class="check-label">Shame/self-criticism</span></label>
+          <label class="check-item"><input type="checkbox" name="emo" value="hopeless"><div class="check-box"></div><span class="check-label">Low hope</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Cognitive clarity / focus</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_focus')" id="q_focus">
+          <div class="slider-val" id="v_focus">5</div>
+        </div>
+        <div class="slider-poles"><span>Fog/scattered</span><span>Clear/sharp</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Capacity to regulate emotions when triggered</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_reg')" id="q_reg">
+          <div class="slider-val" id="v_reg">5</div>
+        </div>
+        <div class="slider-poles"><span>Reactive/flooded</span><span>Regulated</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">What's sitting in you emotionally that doesn't have words yet?</div>
+        <textarea id="q_emo_open" placeholder="Write freely. No format needed."></textarea>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn" onclick="goBack('s1', 0)">← Back</button>
+      <button class="nav-btn primary" onclick="goNext('s3', 2)">Next → HPA + Hormonal</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: HPA + HORMONAL -->
+  <div id="s3" class="section">
+    <p class="section-intro">Your labs are pending. This section maps the symptom picture so we can cross-reference once results arrive.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">◎</div>
+        <div class="domain-title">Stress Axis + Hormonal Terrain</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Perceived stress load over the past 30 days</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_stress')" id="q_stress">
+          <div class="slider-val" id="v_stress">5</div>
+        </div>
+        <div class="slider-poles"><span>Minimal</span><span>Maximal</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">HPA/hormonal symptom indicators (check all applying)</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="hpa" value="crash"><div class="check-box"></div><span class="check-label">Afternoon energy crash</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="wired"><div class="check-box"></div><span class="check-label">Wired but tired</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="craving"><div class="check-box"></div><span class="check-label">Salt/sugar cravings</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="palpitations"><div class="check-box"></div><span class="check-label">Heart racing/anxiety</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="cold"><div class="check-box"></div><span class="check-label">Always cold</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="hair"><div class="check-box"></div><span class="check-label">Hair thinning</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="libido"><div class="check-box"></div><span class="check-label">Low drive/libido</span></label>
+          <label class="check-item"><input type="checkbox" name="hpa" value="inflammation"><div class="check-box"></div><span class="check-label">Puffiness/inflammation</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Consistency of medications & supplements this week</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_meds')" id="q_meds">
+          <div class="slider-val" id="v_meds">5</div>
+        </div>
+        <div class="slider-poles"><span>Missed many</span><span>Consistent</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Any notable observations about your body this week?</div>
+        <textarea id="q_body_open" placeholder="Anything your body's been trying to tell you..."></textarea>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn" onclick="goBack('s2', 1)">← Back</button>
+      <button class="nav-btn primary" onclick="goNext('s4', 3)">Next → Relational</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: RELATIONAL -->
+  <div id="s4" class="section">
+    <p class="section-intro">Relationship stress lives in the body. The nervous system doesn't know the difference between a threat and an unresolved conversation.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">⌀</div>
+        <div class="domain-title">Connection & Relational Load</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Sense of felt connection with others right now</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_connect')" id="q_connect">
+          <div class="slider-val" id="v_connect">5</div>
+        </div>
+        <div class="slider-poles"><span>Isolated</span><span>Held</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Relational stressors present (check all)</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="rel" value="ambiguity"><div class="check-box"></div><span class="check-label">Unresolved ambiguity</span></label>
+          <label class="check-item"><input type="checkbox" name="rel" value="loneliness"><div class="check-box"></div><span class="check-label">Loneliness</span></label>
+          <label class="check-item"><input type="checkbox" name="rel" value="conflict"><div class="check-box"></div><span class="check-label">Active conflict</span></label>
+          <label class="check-item"><input type="checkbox" name="rel" value="longing"><div class="check-box"></div><span class="check-label">Longing/grief</span></label>
+          <label class="check-item"><input type="checkbox" name="rel" value="boundary"><div class="check-box"></div><span class="check-label">Boundary strain</span></label>
+          <label class="check-item"><input type="checkbox" name="rel" value="unseen"><div class="check-box"></div><span class="check-label">Feeling unseen</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Any specific relational situation taking up space in your nervous system?</div>
+        <textarea id="q_rel_open" placeholder="You don't have to have it figured out to write it down..."></textarea>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn" onclick="goBack('s3', 2)">← Back</button>
+      <button class="nav-btn primary" onclick="goNext('s5', 4)">Next → Spiritual</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SPIRITUAL -->
+  <div id="s5" class="section">
+    <p class="section-intro">For you, this is load-bearing. Not a bonus category — a root system.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">✦</div>
+        <div class="domain-title">Faith, Meaning & Inner Life</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Sense of connection with God / your faith right now</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_faith')" id="q_faith">
+          <div class="slider-val" id="v_faith">5</div>
+        </div>
+        <div class="slider-poles"><span>Distant/dry</span><span>Close/alive</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Spiritual/meaning indicators (check all)</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="spi" value="purpose"><div class="check-box"></div><span class="check-label">Purpose feeling distant</span></label>
+          <label class="check-item"><input type="checkbox" name="spi" value="prayer"><div class="check-box"></div><span class="check-label">Prayer feels hard</span></label>
+          <label class="check-item"><input type="checkbox" name="spi" value="community"><div class="check-box"></div><span class="check-label">Away from community</span></label>
+          <label class="check-item"><input type="checkbox" name="spi" value="doubt"><div class="check-box"></div><span class="check-label">Doubt/questioning</span></label>
+          <label class="check-item"><input type="checkbox" name="spi" value="gratitude"><div class="check-box"></div><span class="check-label">Hard to find gratitude</span></label>
+          <label class="check-item"><input type="checkbox" name="spi" value="grief"><div class="check-box"></div><span class="check-label">Spiritual grief</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Sense of hope about the future</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_hope')" id="q_hope">
+          <div class="slider-val" id="v_hope">5</div>
+        </div>
+        <div class="slider-poles"><span>Clouded</span><span>Clear</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">What do you need from God right now, even if you can't fully articulate it?</div>
+        <textarea id="q_faith_open" placeholder="Honest is fine. Lament is fine. Silence is fine."></textarea>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn" onclick="goBack('s4', 3)">← Back</button>
+      <button class="nav-btn primary" onclick="goNext('s6', 5)">Next → Systems & Capacity</button>
+    </div>
+  </div>
+
+  <!-- SECTION 6: SYSTEMS -->
+  <div id="s6" class="section">
+    <p class="section-intro">You're holding a lot of active threads. This section helps name the structural load — so it stops living invisibly.</p>
+
+    <div class="domain-card">
+      <div class="domain-header">
+        <div class="domain-icon">⊞</div>
+        <div class="domain-title">Life Load & Active Stressors</div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Financial stress level right now</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_fin')" id="q_fin">
+          <div class="slider-val" id="v_fin">5</div>
+        </div>
+        <div class="slider-poles"><span>Pressing</span><span>Manageable</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Work / academic demand level</div>
+        <div class="slider-row">
+          <input type="range" min="1" max="10" value="5" oninput="updateVal(this,'v_work')" id="q_work">
+          <div class="slider-val" id="v_work">5</div>
+        </div>
+        <div class="slider-poles"><span>Overwhelming</span><span>Sustainable</span></div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">Active life stressors (check all present)</div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="sys" value="jobs"><div class="check-box"></div><span class="check-label">Job uncertainty</span></label>
+          <label class="check-item"><input type="checkbox" name="sys" value="money"><div class="check-box"></div><span class="check-label">Financial pressure</span></label>
+          <label class="check-item"><input type="checkbox" name="sys" value="school"><div class="check-box"></div><span class="check-label">Academic pressure</span></label>
+          <label class="check-item"><input type="checkbox" name="sys" value="transition"><div class="check-box"></div><span class="check-label">Life transition</span></label>
+          <label class="check-item"><input type="checkbox" name="sys" value="housing"><div class="check-box"></div><span class="check-label">Housing/space</span></label>
+          <label class="check-item"><input type="checkbox" name="sys" value="future"><div class="check-box"></div><span class="check-label">Future uncertainty</span></label>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-label">In one sentence: what is the hardest thing about right now?</div>
+        <textarea id="q_sys_open" placeholder="Don't filter. Just name it."></textarea>
+      </div>
+    </div>
+
+    <button class="generate-btn" onclick="generateAssessment()">
+      ✦ Generate My Integrative Assessment
+    </button>
+
+    <div id="results"></div>
+
+    <div class="selah-footer">Selah Practice · Integrative Care · This assessment is for personal reflection, not clinical diagnosis</div>
+  </div>
+
+</div>
+
+
+<script>
+// -- CHECKUP OVERLAY --
+function openCheckup() {
+  document.getElementById('checkup-section').style.display = 'block';
+  document.body.classList.add('checkup-open');
+  window.scrollTo(0,0);
+}
+function closeCheckup() {
+  document.getElementById('checkup-section').style.display = 'none';
+  document.body.classList.remove('checkup-open');
+}
+
+// -- THAT'S ME --
+function openThatsMe(id) {
+  document.querySelectorAll('.thatsme-expand').forEach(function(el){ el.classList.remove('open'); });
+  document.querySelectorAll('.thatsme-card').forEach(function(el){ el.classList.remove('active'); });
+  var panel = document.getElementById('tm-' + id);
+  if (!panel) return;
+  panel.classList.add('open');
+  var labels = ['drained','body','burden','held','high','healer'];
+  var idx = labels.indexOf(id);
+  var cards = document.querySelectorAll('.thatsme-card');
+  if (idx >= 0 && cards[idx]) cards[idx].classList.add('active');
+  setTimeout(function(){ panel.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 50);
+}
+
+// -- BLOG DATA --
+var blogData = {
+  cortisol: {
+    category: 'HPA Axis  -  Stress Biology',
+    title: 'Why You\'re Exhausted Even After a Full Night\'s Sleep',
+    subtitle: 'It\'s Not Laziness. It\'s Cortisol.',
+    meta: '8 min read  -  HPA Dysregulation  -  Selah Practice',
+    body: [
+      '<p>You slept eight hours. You went to bed at a reasonable time. You woke up and felt, somehow, more tired than when you lay down. And if you\'ve been told this is just "stress," you have my full permission to roll your eyes because that explanation, while technically true, tells you almost nothing useful.</p>',
+      '<h3>Cortisol Has a Rhythm \u2014 Until It Doesn\'t</h3>',
+      '<p>In a healthy system, cortisol follows a diurnal curve: high in the morning to get you moving, gently declining through the day, low at night so you can rest and repair. This rhythm is called the cortisol awakening response, and it is one of the most sensitive biomarkers of nervous system health we have.</p>',
+      '<p>When you\'ve been under chronic stress \u2014 the kind that just hums quietly underneath everything \u2014 this rhythm gets disrupted. Cortisol becomes blunted in the morning and elevated at night, which is why your mind races at 11pm and you can\'t get into deep sleep.</p>',
+      '<blockquote>"The problem isn\'t that you\'re not sleeping enough. The problem is that your nervous system never got the memo that the emergency is over."</blockquote>',
+      '<h3>What This Actually Feels Like</h3>',
+      '<div class="highlight">You wake up unrefreshed. You need caffeine before you can function. You get a second wind late at night. You crash mid-afternoon. You\'re tired but wired. You\'ve been described as "always on" \u2014 even though you feel empty.</div>',
+      '<h3>The HPA\u2013Thyroid Connection</h3>',
+      '<p>Chronic cortisol dysregulation suppresses thyroid function at the conversion level \u2014 meaning your TSH might look "normal" while your active T3 is quietly insufficient. This is why so many women are told their thyroid is fine while they live in a body that clearly disagrees.</p>',
+      '<p>The Selah Check-Up was built to assess your full terrain \u2014 not just your labs. Because the path back to restorative sleep runs through your whole life, not just your bedtime routine.</p>'
+    ].join('')
+  },
+  pni: {
+    category: 'Psychoneuroimmunology',
+    title: 'Your Feelings Are Biochemical',
+    subtitle: 'And That\'s Not Reductive. It\'s Actually Good News.',
+    meta: '6 min read  -  PNI  -  Selah Practice',
+    body: [
+      '<p>When someone tells you that grief is "just in your head," they are accidentally telling the truth \u2014 and completely missing the point. Your head is command central for your immune system, your hormones, your gut, your skin, and the rhythm of your heartbeat.</p>',
+      '<p>Psychoneuroimmunology \u2014 PNI \u2014 is the science of the bidirectional conversation between your psychological state and your biological systems. And it is one of the most validating bodies of research for women who\'ve been told their symptoms are "just stress."</p>',
+      '<h3>Loneliness Is an Inflammatory Condition</h3>',
+      '<p>This is not metaphor. Perceived social isolation increases inflammatory markers \u2014 including IL-6 and CRP \u2014 at levels comparable to physical injury. Your immune system literally responds to disconnection as a threat. Relationship is not a luxury. It is a biological necessity.</p>',
+      '<blockquote>"The body keeps the score. PNI explains exactly how \u2014 and it turns out the score is written in cytokines."</blockquote>',
+      '<h3>Why Community Is a Health Intervention</h3>',
+      '<p>Faith communities \u2014 when they are safe, embodied, and genuinely connective \u2014 activate the same neurobiological pathways as the best therapeutic interventions. Oxytocin from physical presence. Vagal tone from communal singing. Meaning-making that regulates the prefrontal cortex.</p>',
+      '<div class="highlight">The science has caught up to what faith traditions have always known. Being held by something larger than yourself has a measurable effect on your biology.</div>',
+      '<h3>The Good News</h3>',
+      '<p>If your feelings are biochemical, that means they are real, they have measurable effects, they are not weakness \u2014 and they can change. The same pathways that allow stress to suppress your immune system allow safety, connection, and rest to restore it.</p>'
+    ].join('')
+  },
+  spiritualdryness: {
+    category: 'Faith + Physiology',
+    title: 'When the Worship Doesn\'t Move You Anymore',
+    subtitle: 'A Clinical and Spiritual Framework',
+    meta: '7 min read  -  Faith + Physiology  -  Selah Practice',
+    body: [
+      '<p>You used to feel it. The presence. The warmth behind the words. That undoing, that fullness, that sense of being exactly where you were supposed to be.</p>',
+      '<p>And now you stand in the same room, singing the same songs, and you feel nothing. Or worse \u2014 you feel guilty about feeling nothing.</p>',
+      '<p>I want to tell you something: this is not a faith crisis. This is a whole-person crisis wearing spiritual clothes.</p>',
+      '<h3>What\'s Happening in Your Brain</h3>',
+      '<p>Experiences of spiritual transcendence are mediated by neurobiology. The prefrontal cortex, the default mode network, the insula \u2014 the brain regions involved in meaning-making and the sense of being known \u2014 are among the first casualties of chronic stress, poor sleep, and HPA dysregulation.</p>',
+      '<blockquote>"When your nervous system is in survival mode, it deprioritizes everything it considers non-essential. Unfortunately, it considers transcendence non-essential."</blockquote>',
+      '<div class="highlight">You\'re not dry because God has moved. You\'re dry because you\'ve been running a depleted body and a dysregulated nervous system. The silence isn\'t absence. It\'s exhaustion.</div>',
+      '<h3>What Restoration Actually Looks Like</h3>',
+      '<p>It rarely starts with more spiritual discipline. It starts with the body. Sleep. Nourishment. A regulated nervous system. The physiological conditions for transcendence to be possible again. And then \u2014 slowly, often surprisingly \u2014 the feeling returns.</p>'
+    ].join('')
+  },
+  insulin: {
+    category: 'Metabolic Health  -  Women',
+    title: 'The Acanthosis Nigricans No One Explained to You',
+    subtitle: 'What Your Skin Is Saying About Your Hormones',
+    meta: '9 min read  -  Metabolic Health  -  Selah Practice',
+    body: [
+      '<p>You noticed it. Maybe on the back of your neck. Maybe along your jawline. A darkening of the skin \u2014 velvety in texture, subtle enough that you wondered if you were imagining it, persistent enough that you knew you weren\'t.</p>',
+      '<p>You might have been told it was a hygiene issue. You scrubbed at it. It didn\'t go away. Because it was never about cleanliness. It was your body writing a metabolic message in the only language it had left.</p>',
+      '<h3>What Acanthosis Nigricans Actually Is</h3>',
+      '<p>Acanthosis nigricans is a skin response to insulin resistance. When insulin levels are chronically elevated, keratinocytes receive signals that cause them to proliferate and darken. The skin becomes a visible map of what\'s happening systemically.</p>',
+      '<blockquote>"Your skin didn\'t fail you. It was the loudest messenger you had \u2014 and it deserved to be heard."</blockquote>',
+      '<div class="highlight">Insulin resistance doesn\'t sit alone. Elevated insulin stimulates ovarian androgen production, which can cause acne, hair thinning, irregular cycles, and mood disruption. The HPA axis is often dysregulated alongside it. One thread pulls many.</div>',
+      '<h3>What the Labs Should Include</h3>',
+      '<p>Standard glucose testing often misses early insulin resistance. Fasting insulin, HOMA-IR, full hormonal panel \u2014 testosterone, DHEA-S, SHBG, LH:FSH ratio \u2014 and TPO antibodies tell a fuller story. Your skin was trying to tell you something. Now you have the language to listen back.</p>'
+    ].join('')
+  },
+  woundedhealer: {
+    category: 'Caregiver Wellness',
+    title: 'The Wounded Healer Isn\'t a Metaphor',
+    subtitle: 'It\'s a Calling That Requires a Body',
+    meta: '7 min read  -  Caregiver Wellness  -  Selah Practice',
+    body: [
+      '<p>Henri Nouwen called it the Wounded Healer. The idea that our wounds \u2014 tended, understood, integrated \u2014 make us capable of sitting with another person\'s pain without flinching.</p>',
+      '<p>I believe this. But I also believe it has been used as a justification for neglect. For the belief that the wound is enough \u2014 that you don\'t need to tend it, just carry it. That your depletion is somehow noble.</p>',
+      '<h3>The Biology of Compassion Fatigue</h3>',
+      '<p>Compassion fatigue is not a character failing. Repeated exposure to others\' trauma activates your own stress response \u2014 mirror neurons, the insula, the amygdala \u2014 in ways that are meaningful and necessary for genuine empathy. The problem is these systems weren\'t designed to run indefinitely without recovery.</p>',
+      '<blockquote>"The wound that called you into this work will eventually close the door \u2014 unless you tend it."</blockquote>',
+      '<div class="highlight">Secondary traumatic stress. HPA dysregulation. Blunted affect as a protective mechanism. These are not signs that you care too much. They are signs that you\'ve been caring without being cared for.</div>',
+      '<p>The Selah Check-Up was built for the practitioner, the caregiver, the pastor, the social worker who has given so much care to others that she\'s forgotten what it feels like to receive it. You have enough clinical knowledge to understand your results. You have enough need to deserve them.</p>'
+    ].join('')
+  },
+  wrestling: {
+    category: 'Wrestling Beautifully',
+    title: 'Jacob Limped. And He Was Still Blessed.',
+    subtitle: 'On Not Having to Be Whole Before You\'re Worthy',
+    meta: '5 min read  -  Wrestling Beautifully  -  Selah Practice',
+    body: [
+      '<p>The thing about the Jacob narrative that most Sunday school versions leave out: he left that river permanently changed in his body. The angel touched his hip socket and it was never the same. He walked with a limp for the rest of his life.</p>',
+      '<p>And he walked away with a new name. A blessing. A future. Both things. At the same time. The wound and the promise were the same event.</p>',
+      '<h3>Wrestling Beautifully</h3>',
+      '<p>This is the framework I\'ve built my life and practice around. The belief that the struggle is not the obstacle to transformation \u2014 it is the mechanism of it. That you don\'t have to be resolved, healed, figured-out, or whole before you are worthy of love, blessing, or care.</p>',
+      '<blockquote>"The limp is not the proof that you lost. It is the evidence that you stayed in it long enough to be changed."</blockquote>',
+      '<div class="highlight">You are allowed to be in process. You are allowed to need help while also being the helper. You are allowed to not have it together while also being deeply, powerfully alive.</div>',
+      '<p>The Selah Check-Up doesn\'t ask you to be well. It asks you to be honest. About where you are right now. What you\'re carrying. What you need. That honesty is the beginning of everything.</p>'
+    ].join('')
+  }
+};
+
+// -- BLOG OPEN/CLOSE --
+function openBlog(id) {
+  var b = blogData[id];
+  if (!b) return;
+  document.getElementById('bm-category').textContent = b.category;
+  document.getElementById('bm-title').innerHTML = b.title + (b.subtitle ? ' \u2014 <em>' + b.subtitle + '</em>' : '');
+  document.getElementById('bm-meta').textContent = b.meta;
+  document.getElementById('bm-body').innerHTML = b.body;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlog() {
+  document.getElementById('blogModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('blogModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) { if (e.target === this) closeBlog(); });
+  }
+});
+
+
+// -- CHECKUP --
+
+  function updateVal(el, id) {
+    document.getElementById(id).textContent = el.value;
+  }
+
+  function showSection(id, tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (tab) tab.classList.add('active');
+  }
+
+  function goNext(id, dotIdx) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.phase-tab')[dotIdx].classList.add('active');
+    document.querySelectorAll('.phase-tab').forEach((t,i) => {
+      if (i < dotIdx) t.classList.add('active');
+      else if (i === dotIdx) t.classList.add('active');
+    });
+    updateDots(dotIdx);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function goBack(id, dotIdx) {
+    goNext(id, dotIdx);
+  }
+
+  function updateDots(active) {
+    for (let i = 0; i < 6; i++) {
+      const d = document.getElementById('dot' + i);
+      d.className = 'dot';
+      if (i < active) d.classList.add('done');
+      else if (i === active) d.classList.add('active');
+    }
+  }
+
+  function getSlider(id) { return parseInt(document.getElementById(id)?.value || 5); }
+  function getChecks(name) {
+    return [...document.querySelectorAll(`input[name=${name}]:checked`)].map(el => el.value);
+  }
+  function getText(id) { return document.getElementById(id)?.value || ''; }
+
+  function scoreToStatus(val) {
+    if (val <= 3) return 'critical';
+    if (val <= 5) return 'low';
+    if (val <= 7) return 'moderate';
+    return 'good';
+  }
+
+  function generateAssessment() {
+    var data = {
+      energy: getSlider('q_energy'),
+      sleep: getSlider('q_sleep'),
+      physSymptoms: getChecks('phys'),
+      movement: getSlider('q_move'),
+      food: getSlider('q_food'),
+      mood: getSlider('q_mood'),
+      emoSymptoms: getChecks('emo'),
+      focus: getSlider('q_focus'),
+      regulation: getSlider('q_reg'),
+      emoOpen: getText('q_emo_open'),
+      stress: getSlider('q_stress'),
+      hpaSymptoms: getChecks('hpa'),
+      meds: getSlider('q_meds'),
+      bodyOpen: getText('q_body_open'),
+      connection: getSlider('q_connect'),
+      relSymptoms: getChecks('rel'),
+      relOpen: getText('q_rel_open'),
+      faith: getSlider('q_faith'),
+      spiSymptoms: getChecks('spi'),
+      hope: getSlider('q_hope'),
+      faithOpen: getText('q_faith_open'),
+      financial: getSlider('q_fin'),
+      work: getSlider('q_work'),
+      sysStressors: getChecks('sys'),
+      sysOpen: getText('q_sys_open')
+    };
+
+    var resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '<div class="loading">Reading the terrain</div>';
+
+    var physScore = Math.round((data.energy + data.sleep + data.movement + data.food) / 4);
+    var emoScore  = Math.round((data.mood + data.focus + data.regulation) / 3);
+    var hpaScore  = Math.round((10 - data.stress + data.meds) / 2);
+    var relScore  = Math.round(data.connection);
+    var faithScore = Math.round((data.faith + data.hope) / 2);
+    var sysScore  = Math.round((data.financial + data.work) / 2);
+    var overall   = Math.round((physScore + emoScore + hpaScore + relScore + faithScore + sysScore) / 6);
+
+    // -- HEADLINE --
+    var headlines = [
+      [ 1, 3, "Your system is in acute distress across multiple domains -- this is a call to stop and tend to yourself now, not eventually."],
+      [ 4, 5, "You are running on reserves you may not know are depleted. The gap between how you appear and how you actually feel is wide right now."],
+      [ 6, 7, "There is real capacity in you -- and real load too. You are holding more than most people see, and your terrain is asking for attention in specific places."],
+      [ 8,10, "You are in a grounded season. Stay honest about the pockets of depletion -- they are signals worth tending, even when the overall picture looks stable."]
+    ];
+    var headline = headlines[0][2];
+    for (var h = 0; h < headlines.length; h++) {
+      if (overall >= headlines[h][0] && overall <= headlines[h][1]) { headline = headlines[h][2]; break; }
+    }
+
+    // -- PRIMARY PATTERN --
+    var lowest = Math.min(physScore, emoScore, hpaScore, relScore, faithScore, sysScore);
+    var domainNames = ['Physical','Neuro-Emotional','HPA & Hormonal','Relational','Spiritual','Systems'];
+    var domainScores = [physScore, emoScore, hpaScore, relScore, faithScore, sysScore];
+    var primaryDomain = domainNames[domainScores.indexOf(lowest)];
+
+    var patterns = {
+      'Physical':         'The primary pattern is somatic depletion -- your body is the loudest voice in the room right now. Energy, sleep, and nourishment are the foundation everything else rests on, and that foundation needs direct attention.',
+      'Neuro-Emotional':  'The primary pattern is emotional and cognitive depletion -- your nervous system is under significant load. Mood dysregulation and reduced capacity for resilience are signals, not character flaws.',
+      'HPA & Hormonal':   'The primary pattern is HPA axis strain -- your stress response system is dysregulated, likely affecting cortisol rhythm, thyroid conversion, and hormonal balance downstream. This is the root thread.',
+      'Relational':       'The primary pattern is relational depletion -- the quality and safety of your connections is directly affecting your nervous system. Felt isolation or unresolved relational load is a biological stressor, not just an emotional one.',
+      'Spiritual':        'The primary pattern is meaning and spiritual depletion -- the root system that sustains everything else is dry. This is not a faith failure; it is a whole-person signal that your inner life needs tending alongside the physical.',
+      'Systems':          'The primary pattern is structural overload -- the external circumstances of your life are creating a chronic stress burden your nervous system cannot fully adapt to. The load is real and it is showing up in your body.'
+    };
+    var primaryPattern = patterns[primaryDomain] || patterns['Physical'];
+
+    // -- PNI LAYER --
+    var pniOptions = [];
+    if (data.stress >= 7) pniOptions.push('Elevated perceived stress is likely maintaining elevated cortisol and pro-inflammatory cytokines (IL-6, TNF-\u03b1), suppressing immune surveillance and mucosal immunity.');
+    if (data.connection <= 4 || data.relSymptoms.indexOf('loneliness') >= 0) pniOptions.push('Perceived social isolation activates the same threat pathways as physical danger -- your HPA axis and sympathetic nervous system are responding to relational disconnection as a biological stressor.');
+    if (faithScore <= 4) pniOptions.push('Disruption in meaning-making and transcendence correlates with reduced vagal tone and impaired prefrontal regulation -- your spiritual terrain is not separate from your neurobiological one.');
+    if (data.physSymptoms.indexOf('fatigue') >= 0 || data.energy <= 4) pniOptions.push('Persistent fatigue in the context of psychological load often reflects mitochondrial and HPA dysregulation rather than simple rest deficit -- the cell-danger response may be active.');
+    if (data.hpaSymptoms.indexOf('wired') >= 0 || data.hpaSymptoms.indexOf('crash') >= 0) pniOptions.push('The wired-but-tired pattern is a hallmark of phase II HPA dysregulation: blunted morning cortisol with compensatory evening elevation, disrupting sleep architecture and immune repair cycles.');
+    if (pniOptions.length === 0) pniOptions.push('Your psychosocial load is moderate and your biological systems appear to have some adaptive reserve -- continue monitoring and tend to the domains showing early strain before they cascade.');
+    var pniLayer = pniOptions.slice(0, 2).join(' ');
+
+    // -- INSIGHTS --
+    var insights = [];
+    if (data.sleep <= 4) insights.push({ type: 'alert', tag: 'Sleep Architecture', text: 'Sleep quality this low is not a lifestyle issue -- it is a physiological signal. Cortisol rhythm, blood sugar regulation, and immune repair all depend on sleep. This is a first-priority intervention.' });
+    if (data.hpaSymptoms.indexOf('wired') >= 0 && data.hpaSymptoms.indexOf('crash') >= 0) insights.push({ type: 'alert', tag: 'HPA Pattern', text: 'Wired-but-tired plus afternoon crash together suggest cortisol curve inversion. This will affect mood, focus, metabolism, and thyroid function until addressed at the root.' });
+    if (data.physSymptoms.indexOf('skin') >= 0) insights.push({ type: 'note', tag: 'Skin as Signal', text: 'Skin flares in this context often reflect inflammatory load, hormonal fluctuation, or immune dysregulation -- not a surface issue. Worth cross-referencing with your pending hormonal labs.' });
+    if (data.relSymptoms.indexOf('ambiguity') >= 0) insights.push({ type: 'note', tag: 'Relational Ambiguity', text: 'Unresolved relational ambiguity keeps your nervous system in a low-grade vigilance state. The not-knowing is its own stressor -- even before any outcome.' });
+    if (data.spiSymptoms.indexOf('prayer') >= 0 || data.spiSymptoms.indexOf('purpose') >= 0) insights.push({ type: 'note', tag: 'Spiritual Terrain', text: 'When prayer feels hard and purpose feels distant simultaneously, the nervous system is usually the underlying cause, not the spirit. Tend the body first and watch what opens.' });
+    if (data.meds <= 5) insights.push({ type: 'alert', tag: 'Protocol Consistency', text: 'Inconsistent medication and supplement intake significantly reduces their therapeutic effect. Even one missed day of certain supplements affects the curve. Consistency here is non-negotiable.' });
+    if (data.emoSymptoms.indexOf('numb') >= 0) insights.push({ type: 'alert', tag: 'Emotional Numbing', text: 'Emotional numbness or detachment is often a nervous system protective response to prolonged overwhelm -- not apathy. It is a sign the system needs safety and rest, not more stimulation.' });
+    if (data.sysStressors.length >= 3) insights.push({ type: 'note', tag: 'Stressor Accumulation', text: 'You have multiple active structural stressors running simultaneously. Allostatic load is cumulative -- what feels manageable individually creates significant burden when compounded.' });
+    if (insights.length < 3) insights.push({ type: 'note', tag: 'Observation', text: 'Your assessment reflects a person carrying significant invisible load with remarkable functional capacity. The gap between what you produce and what you feel is itself data worth naming.' });
+
+    // -- LAB CONNECTION --
+    var labParts = [];
+    if (data.hpaSymptoms.indexOf('cold') >= 0 || data.hpaSymptoms.indexOf('hair') >= 0) labParts.push('Your pending TPO antibodies and thyroid panel are particularly relevant given the cold intolerance and hair changes you\'re experiencing.');
+    if (data.hpaSymptoms.indexOf('craving') >= 0 || data.physSymptoms.indexOf('fatigue') >= 0) labParts.push('Fasting insulin and cortisol results will clarify whether the cravings and fatigue reflect insulin resistance, HPA dysregulation, or both.');
+    if (labParts.length === 0) labParts.push('Your pending labs will add precision to this symptom picture -- particularly TPO antibodies, fasting insulin, and cortisol to confirm or rule out the patterns suggested here.');
+    labParts.push('Until results return, this protocol is built on the symptom terrain. Adjust when the numbers arrive.');
+    var labConnection = labParts.join(' ');
+
+    // -- PROTOCOL --
+    var immediate = [];
+    var thisWeek = [];
+    var whenLabs = [];
+
+    // Immediate
+    if (data.sleep <= 5) immediate.push({ priority: 'high', category: 'Sleep', action: 'Implement a hard wind-down at 10pm tonight -- no screens, dim light, magnesium glycinate if you have it. Even one night of intentional sleep hygiene shifts the cortisol curve.' });
+    if (data.food <= 5) immediate.push({ priority: 'high', category: 'Nourishment', action: 'Eat a protein-anchored meal within the next two hours if you haven\'t. Blood sugar stability is the fastest lever for mood, focus, and cortisol regulation.' });
+    if (data.meds <= 6) immediate.push({ priority: 'high', category: 'Protocol', action: 'Take any missed supplements or medications today. Set a phone alarm for tomorrow morning. Consistency compounds.' });
+    immediate.push({ priority: 'med', category: 'Nervous System', action: 'Do 5 minutes of box breathing or humming before sleep tonight. Vagal tone is the fastest non-supplement route to nervous system regulation.' });
+    if (data.connection <= 5) immediate.push({ priority: 'med', category: 'Connection', action: 'Send one text today to someone who makes you feel safe -- not to process, just to connect. Felt safety is a biological need.' });
+
+    // This Week
+    thisWeek.push({ priority: 'high', category: 'HPA Support', action: 'Prioritise sleep above all other interventions this week. No supplement protocol will work well in a sleep-deprived nervous system.' });
+    if (data.movement <= 5) thisWeek.push({ priority: 'med', category: 'Movement', action: 'Commit to one walk per day -- even 15 minutes. Not for fitness. For cortisol clearance and lymphatic drainage.' });
+    thisWeek.push({ priority: 'med', category: 'Supplement Review', action: 'Review your current supplement timing. NAC, berberine, and myo-inositol are most effective taken consistently with meals. Confirm you\'re not taking anything that disrupts sleep.' });
+    if (faithScore <= 5) thisWeek.push({ priority: 'med', category: 'Spiritual', action: 'Give yourself permission to be spiritually dry without trying to fix it. Lament is a legitimate spiritual practice. Write one honest sentence to God this week -- that\'s enough.' });
+    thisWeek.push({ priority: 'low', category: 'Boundaries', action: 'Identify one commitment this week that you can reduce, delegate, or remove. You cannot heal in the same conditions that created the depletion.' });
+
+    // When Labs
+    whenLabs.push({ priority: 'high', category: 'Thyroid', action: 'If TPO antibodies are elevated, discuss selenium protocol optimisation and consider AIP dietary trial for 30 days.' });
+    whenLabs.push({ priority: 'high', category: 'Metabolic', action: 'If fasting insulin is above 10 mIU/L, escalate berberine dose and add d-chiro inositol. Cross-reference with testosterone and DHEA-S.' });
+    whenLabs.push({ priority: 'high', category: 'HPA', action: 'If cortisol is low AM or inverted, consider adaptogen support (ashwagandha, rhodiola) and address sleep architecture as the primary intervention.' });
+    whenLabs.push({ priority: 'med', category: 'Vitamin D', action: 'If Vitamin D is below 75 nmol/L, supplement at 2000-4000 IU daily with K2. Low Vitamin D compounds fatigue, mood, and immune dysregulation.' });
+
+    // -- FLOWCHART --
+    var worstDomain = primaryDomain;
+    var flowchart = [
+      { level: 'root',   text: 'Current State: ' + (overall <= 4 ? 'Acute Depletion' : overall <= 6 ? 'Moderate Load' : 'Manageable with Attention') },
+      { level: 'domain', text: worstDomain + ': Primary Domain of Concern (Score ' + lowest + '/10)' },
+      { level: 'urgent', text: 'Immediate: ' + immediate[0].action.slice(0, 80) + '...' },
+      { level: 'domain', text: 'HPA & Cortisol Axis: Key Regulatory Thread' },
+      { level: 'action', text: 'This Week: Prioritise sleep, protein stability, and nervous system regulation' },
+      { level: 'action', text: 'When Labs Return: Adjust supplement protocol based on TPO, insulin, cortisol results' }
+    ];
+
+    // -- SELAH WORD --
+    var selahWords = ['Selah', 'Rest', 'Held', 'Enough', 'Breathe', 'Still', 'Known', 'Remain', 'Receive'];
+    var selahIdx = Math.floor((faithScore + overall) / 2) % selahWords.length;
+    var selahWord = selahWords[selahIdx];
+
+    // -- CLOSING REFLECTION --
+    var closings = [
+      "You are not failing. You are a whole person under significant load -- and today you did something most people never do: you stopped and looked honestly at where you actually are. That takes more courage than it looks like. Let what you found here be information, not indictment. You know how to tend to people. Now let this be the beginning of tending to yourself.",
+      "The fact that you are still standing, still building, still showing up -- while carrying what you carry -- is not proof that you don't need rest. It is proof that you've been surviving without it. You deserve more than survival. The Selah Check-Up is not a destination. It's an invitation. Come back to it monthly. Watch what changes.",
+      "You are deeply, precisely known -- not just as a practitioner in training, but as a whole person with a body that is trying to speak, a spirit that is weary and faithful at the same time, and a life that is actively becoming something. None of what you're carrying is wasted. But some of it needs to be set down. Start there."
+    ];
+    var closingReflection = closings[overall <= 4 ? 0 : overall <= 7 ? 1 : 2];
+
+    var result = {
+      headline: headline,
+      primaryPattern: primaryPattern,
+      pniLayer: pniLayer,
+      insights: insights.slice(0, 4),
+      labConnection: labConnection,
+      protocol: { immediate: immediate, thisWeek: thisWeek, whenLabsReturn: whenLabs },
+      flowchart: flowchart,
+      selahWord: selahWord,
+      closingReflection: closingReflection
+    };
+
+    setTimeout(function() {
+      renderResults(result, data, physScore, emoScore, hpaScore, relScore, faithScore, sysScore);
+    }, 800);
+  }
+
+
+  function renderResults(r, data, phys, emo, hpa, rel, faith, sys) {
+    const now = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    const domainBars = [
+      { label: 'Physical', score: phys },
+      { label: 'Emotional', score: emo },
+      { label: 'HPA/Stress', score: hpa },
+      { label: 'Relational', score: rel },
+      { label: 'Spiritual', score: faith },
+      { label: 'Systems', score: sys }
+    ];
+
+    let barsHTML = domainBars.map(d => {
+      const pct = Math.round(d.score * 10);
+      const status = scoreToStatus(d.score);
+      return `<div class="domain-bar-row">
+        <div class="domain-bar-label">${d.label}</div>
+        <div class="bar-track"><div class="bar-fill ${status}" style="width:${pct}%"></div></div>
+        <div class="bar-pct">${pct}%</div>
+      </div>`;
+    }).join('');
+
+    let insightsHTML = (r.insights || []).map(i =>
+      `<div class="insight-card ${i.type === 'alert' ? 'alert' : i.type === 'note' ? 'note' : ''}">
+        <div class="insight-tag">${i.tag}</div>
+        <div class="insight-text">${i.text}</div>
+      </div>`
+    ).join('');
+
+    const pItems = (items) => (items || []).map(p =>
+      `<div class="protocol-item">
+        <div class="p-priority ${p.priority}"></div>
+        <div>
+          <div class="p-text">${p.action}</div>
+          <div class="p-category">${p.category}</div>
+        </div>
+      </div>`
+    ).join('');
+
+    // Flowchart
+    let flowHTML = '';
+    if (r.flowchart) {
+      flowHTML = (r.flowchart || []).map((node, i) => {
+        const cls = node.level === 'root' ? 'root' : node.level === 'domain' ? 'domain-node' : node.level === 'urgent' ? 'urgent-node' : 'action-node';
+        const arrow = i < r.flowchart.length - 1 ? '<div class="flow-arrow">v</div>' : '';
+        return `<div class="flow-node ${cls}">${node.text}</div>${arrow}`;
+      }).join('');
+    }
+
+    document.getElementById('results').innerHTML = `
+      <hr class="divider">
+      <div class="results-header">Your Integrative Assessment</div>
+      <div class="results-timestamp">${now}</div>
+
+      <div class="terrain-map">
+        <div class="terrain-title">Terrain Map -- Domain Vitality</div>
+        ${barsHTML}
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-tag">Assessment Summary</div>
+        <div class="insight-text">${r.headline}</div>
+      </div>
+
+      <div class="insight-card note">
+        <div class="insight-tag">Primary Pattern</div>
+        <div class="insight-text">${r.primaryPattern}</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-tag">PNI Layer</div>
+        <div class="insight-text">${r.pniLayer}</div>
+      </div>
+
+      ${insightsHTML}
+
+      <div class="insight-card note">
+        <div class="insight-tag">Pending Labs -> Clinical Bridge</div>
+        <div class="insight-text">${r.labConnection}</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="protocol-section">
+        <div class="protocol-heading">Protocol  -  Immediate (Today)</div>
+        ${pItems((r.protocol && r.protocol.immediate) || [])}
+      </div>
+
+      <div class="protocol-section">
+        <div class="protocol-heading">Protocol  -  This Week</div>
+        ${pItems((r.protocol && r.protocol.thisWeek) || [])}
+      </div>
+
+      <div class="protocol-section">
+        <div class="protocol-heading">Protocol  -  When Labs Return</div>
+        ${pItems((r.protocol && r.protocol.whenLabsReturn) || [])}
+      </div>
+
+      <hr class="divider">
+
+      <div style="margin-bottom:16px">
+        <div class="terrain-title" style="margin-bottom:14px">Integrative Flowchart</div>
+        <div class="flowchart">${flowHTML}</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="insight-card" style="border-left-color: var(--blush); text-align:center">
+        <div class="insight-tag">Selah Word</div>
+        <div style="font-family:'Playfair Display',serif; font-size:26px; font-style:italic; color:var(--deep); margin: 8px 0">${r.selahWord}</div>
+      </div>
+
+      <div class="insight-card note" style="margin-top:14px">
+        <div class="insight-tag">A Word for You</div>
+        <div class="insight-text">${r.closingReflection}</div>
+      </div>
+
+      <div class="save-bar">
+        <button class="save-btn" onclick="copyResults()">[+] Copy to Clipboard</button>
+        <button class="save-btn primary" onclick="printResults()">v Save as PDF</button>
+      </div>
+    `;
+  }
+
+  function copyResults() {
+    const el = document.getElementById('results');
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.target;
+      btn.textContent = 'v Copied';
+      setTimeout(() => btn.textContent = '[+] Copy to Clipboard', 2000);
+    });
+  }
+
+
+  function printResults() {
+    var el = document.getElementById('results');
+    if (!el) return;
+    var win = window.open('', '_blank');
+    if (!win) { alert('Please allow popups to save as PDF'); return; }
+    var head = '<!DOCTYPE html><html><head><title>Selah Practice Check-Up</title>';
+    head += '<style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:0 20px;color:#1a1410;}';
+    head += 'h1{font-style:italic;font-weight:400;text-align:center;border-bottom:1px solid #ccc;padding-bottom:16px;margin-bottom:24px;}';
+    head += '.save-bar,.view-toggle,.spotify-player{display:none!important;}';
+    head += '</style></head><body>';
+    var title = '<h1>The Selah Check-Up</h1>';
+    var foot = '</body></html>';
+    win.document.open();
+    win.document.write(head + title + el.innerHTML + foot);
+    win.document.close();
+    setTimeout(function(){ win.print(); }, 600);
+  }
+
+</script>
+
+<!-- VIEW TOGGLE -->
+<div class="view-toggle" id="viewToggle">
+  <button class="view-toggle-btn" id="btn-mobile" onclick="setView('mobile')" title="Mobile view">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+    Mobile
+  </button>
+  <div class="view-toggle-divider"></div>
+  <button class="view-toggle-btn" id="btn-desktop" onclick="setView('desktop')" title="Desktop view">
+    <svg width="14" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Desktop
+  </button>
+</div>
+
+
+<!-- SPOTIFY PLAYER -->
+<div class="spotify-player" id="spotifyPlayer">
+  <div class="spotify-embed-wrap" id="spotifyEmbed">
+    <iframe
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4Q2SnB3glnP?utm_source=generator&theme=0"
+      width="300"
+      height="152"
+      frameborder="0"
+      allowtransparency="true"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+  <button class="spotify-toggle" onclick="toggleSpotify()" id="spotifyBtn">
+    <span class="spotify-dot"></span>
+    <span id="spotifyLabel">Play · Somatic Spa</span>
+  </button>
+</div>
+
+</body>
+</html>
